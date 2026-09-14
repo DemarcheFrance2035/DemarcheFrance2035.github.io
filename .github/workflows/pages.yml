@@ -1,0 +1,65 @@
+name: Publier Démarche France 2035
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Récupérer le site
+        uses: actions/checkout@v4
+
+      - name: Préparer Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Restaurer les documents à télécharger
+        shell: bash
+        run: |
+          while IFS= read -r -d '' archive; do
+            destination="${archive#.packed/}"
+            destination="${destination%.gz}"
+            mkdir -p "$(dirname "$destination")"
+            gzip -dc "$archive" > "$destination"
+          done < <(find .packed -type f -name '*.gz' -print0)
+
+      - name: Générer et valider le site
+        run: |
+          node generate.mjs
+          node validate.mjs
+
+      - name: Configurer GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Préparer les fichiers à publier
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+      - name: Mettre le site en ligne
+        id: deployment
+        uses: actions/deploy-pages@v5
+
+      - name: Signaler les pages à IndexNow
+        run: |
+          for attempt in {1..12}; do
+            node submit-indexnow.mjs && exit 0
+            sleep 10
+          done
+          exit 1
