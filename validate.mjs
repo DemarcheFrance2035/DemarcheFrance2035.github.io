@@ -9,7 +9,7 @@ function walk(dir) {
   for (const entry of fs.readdirSync(dir, {withFileTypes:true})) {
     const full = path.join(dir, entry.name);
     if (entry.isDirectory()) walk(full);
-    else if (entry.name.endsWith('.html')) htmlFiles.push(full);
+    else if (entry.name.endsWith('.html') && entry.name !== 'google26c5ac0079b8b67f.html') htmlFiles.push(full);
   }
 }
 
@@ -64,12 +64,15 @@ for (const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
 }
 if (sitemap.includes('/404.html')) errors.push('sitemap: 404 must not be indexed');
 
-for (const file of ['assets/site.css','assets/site.js','assets/logo-france2035.png','assets/logo-france2035-256.webp','assets/hero-france2035.webp','assets/og-france2035.png','favicon.svg','site.webmanifest','sitemap.xml','indexnow-key.txt']) {
+for (const file of ['assets/site.css','assets/site.js','assets/logo-france2035.png','assets/logo-france2035-256.webp','assets/hero-france2035.webp','assets/og-france2035.png','favicon.svg','site.webmanifest','sitemap.xml','indexnow-key.txt','google26c5ac0079b8b67f.html']) {
   if (!fs.existsSync(path.join(root,file))) errors.push(`missing required asset ${file}`);
 }
 
 const indexNowKey = fs.readFileSync(path.join(root,'indexnow-key.txt'),'utf8').trim();
 if (!/^[a-f0-9]{32}$/.test(indexNowKey)) errors.push('indexnow-key.txt: invalid key');
+
+const googleVerification = fs.readFileSync(path.join(root,'google26c5ac0079b8b67f.html'),'utf8').trim();
+if (googleVerification !== 'google-site-verification: google26c5ac0079b8b67f.html') errors.push('google verification file: invalid content');
 
 if (errors.length) {
   console.error(errors.join('\n'));
