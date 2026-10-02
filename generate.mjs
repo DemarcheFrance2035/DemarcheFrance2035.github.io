@@ -73,6 +73,7 @@ const nav = [
   ['/calendrier-execution/', 'Calendrier d’exécution'],
   ['/contribuer/', 'Contribuer'],
   ['/journal/', 'Journal'],
+  ['/kit-presse/', 'Kit presse'],
   ['/contact/', 'Contact'],
 ];
 
@@ -281,7 +282,7 @@ function layout({title, description, active='/', content, pathName='/', robots='
     <div class="footer-grid">
       <div><img src="/assets/logo-france2035-256.webp" width="84" height="84" alt=""><p><strong>Démarche France 2035</strong><br>Initiative citoyenne indépendante, sans affiliation à un parti ni à un candidat.</p></div>
       <div><h2>Explorer</h2><a href="/la-demarche/">La démarche</a><a href="/programme/">Programme</a><a href="/budget/">Budget</a><a href="/simulations-impact/">Simulations</a><a href="/calendrier-execution/">Calendrier</a></div>
-      <div><h2>Agir</h2><a href="/contribuer/">Contribuer</a><button class="footer-link" data-open-share>Partager</button><a href="mailto:${contact}">${contact}</a><a href="/mentions-legales/">Mentions & confidentialité</a></div>
+      <div><h2>Agir</h2><a href="/contribuer/">Contribuer</a><a href="/kit-presse/">Kit presse</a><button class="footer-link" data-open-share>Partager</button><a href="mailto:${contact}">${contact}</a><a href="/mentions-legales/">Mentions & confidentialité</a></div>
     </div>
     <div class="footer-bottom"><span>© 2026 Démarche France 2035</span><span>Aucun don demandé • Aucun traceur publicitaire</span><span>Réutilisation des propositions autorisée avec citation de la source.</span></div>
   </footer>
@@ -453,10 +454,34 @@ const journalPage = layout({
   title:'Journal des évolutions', active:'/journal/', pathName:'/journal/',
   description:'Le journal public des mises à jour de Démarche France 2035 : documents, corrections, contributions et prochaines étapes.',
   content:`${pageHero('Journal des évolutions','Montrer ce qui change — et pourquoi.','Chaque mise à jour importante est datée. Le journal permet de suivre les ajouts, les corrections et l’état de consolidation du programme.',shareButton())}
-  <section class="section"><div class="container journal"><article class="featured-post"><time datetime="2026-09-15">15 septembre 2026</time><span class="post-tag">Site</span><h2>Lancement du site</h2><p>Le programme, le budget, les simulations d’impact, le calendrier d’exécution, la lettre de présentation et l’espace de contribution sont désormais accessibles en ligne.</p></article>
+  <section class="section"><div class="container journal"><article class="featured-post"><time datetime="2026-10-02">2 octobre 2026</time><span class="post-tag">Site</span><h2>Création d’un onglet « Kit Presse » sur le site</h2><p>Un nouvel espace rassemble désormais le communiqué de presse, les principaux repères sur Démarche France 2035, une présentation d’Andy Sabria, les documents de référence, ainsi que la photo presse et le logo destinés aux journalistes.</p></article>
+  <article><time datetime="2026-09-15">15 septembre 2026</time><span class="post-tag">Site</span><h2>Lancement du site</h2><p>Le programme, le budget, les simulations d’impact, le calendrier d’exécution, la lettre de présentation et l’espace de contribution sont désormais accessibles en ligne.</p></article>
   <article><time datetime="2026-08-30">30 août 2026</time><span class="post-tag">Programme</span><h2>Fin de l’élaboration du programme</h2><p>Achèvement de la première version complète de Démarche France 2035 après six mois et demi de travail.</p></article>
   </div></section>
   <section class="closing-cta"><div class="container"><span class="eyebrow light">Proposer une évolution</span><h2>Une remarque peut devenir une amélioration documentée.</h2><p>Indiquez la section concernée, le changement proposé et, si possible, une source.</p><a class="button button-light" href="mailto:${contact}?subject=Proposition%20pour%20le%20journal%20des%20%C3%A9volutions">Écrire à Démarche France 2035<span>→</span></a></div></section>`
+});
+
+
+const kitPressPage = layout({
+  title:'Kit presse', active:'/kit-presse/', pathName:'/kit-presse/',
+  description:'Kit presse de Démarche France 2035 : communiqué, repères, documents de référence, photo presse, logo et contact d’Andy Sabria.',
+  content:`${pageHero('Kit presse','Ressources pour les journalistes.','Retrouvez en un seul endroit le communiqué de presse, les principaux repères sur Démarche France 2035, une courte biographie d’Andy Sabria, les documents de référence, la photo presse et le logo.',`<a class="button button-light download" href="/downloads/communique-presse-france2035.pdf" download>Télécharger le communiqué de presse<span>↓</span></a><a class="button button-ghost-light download" href="/downloads/kit-presse-france2035.pdf" download>Télécharger le kit presse PDF<span>↓</span></a><a class="button button-ghost-light" href="mailto:${contact}?subject=Presse%20-%20D%C3%A9marche%20France%202035">Contacter Andy Sabria<span>→</span></a>`)}
+  <section class="section press-overview"><div class="container press-grid"><div><span class="eyebrow">Démarche en bref</span><h2>Une initiative citoyenne indépendante.</h2><p class="lead">Démarche France 2035 est une initiative citoyenne indépendante conçue par Andy Sabria, à Narbonne. Le travail a été mené du 15 février au 30 août 2026 afin de construire une proposition d’ensemble destinée à nourrir le débat présidentiel de 2027.</p><div class="press-stats"><article><b>3</b><span>piliers : Produire, Simplifier, Protéger</span></article><article><b>30</b><span>chantiers structurants</span></article><article><b>436</b><span>mesures détaillées</span></article><article><b>70</b><span>pages de programme</span></article><article><b>40</b><span>simulations d’impact</span></article><article><b>15 ans</b><span>de calendrier</span></article></div><p>Démarche France 2035 est une initiative personnelle et citoyenne, indépendante de toute organisation politique. Elle ne sollicite aucun don et présente ses documents comme une contribution au débat public.</p></div><figure class="press-portrait"><img src="/assets/andy-sabria-presse.jpg" alt="Andy Sabria, architecte de Démarche France 2035" loading="eager"><figcaption>Andy Sabria, architecte de Démarche France 2035.</figcaption></figure></div></section>
+  <section class="section light-section"><div class="container press-bio"><figure class="press-bio-photo"><img src="/assets/andy-sabria-presse.jpg" alt="Portrait presse d’Andy Sabria" loading="lazy"></figure><div><span class="eyebrow">Andy Sabria</span><h2>Présentation.</h2><p class="lead">Andy Sabria est Narbonnais, père de deux jeunes enfants et conjoint collaborateur d’un centre de bien-être à Narbonne.</p><p>Il présente Démarche France 2035 comme une contribution personnelle au débat public, construite sans commande d’un parti et sans intérêt financier. Son objectif est de mettre à disposition une architecture complète, chiffrée et documentée, ouverte à la discussion et à l’amélioration.</p><p class="press-credit"><strong>Crédit photo :</strong> Démarche France 2035 / Andy Sabria. Utilisation rédactionnelle autorisée pour illustrer les contenus consacrés à Andy Sabria ou à Démarche France 2035. Recadrage technique autorisé ; aucune altération substantielle du portrait.</p><p class="press-credit"><strong>Crédit logo :</strong> Démarche France 2035. Utilisation rédactionnelle autorisée ; ne pas modifier les couleurs, les proportions ni les éléments graphiques.</p></div></div></section>
+  <section class="section"><div class="container split"><div><span class="eyebrow">Méthode de travail</span><h2>Une méthode directement consultable.</h2></div><div><p>Andy Sabria indique avoir utilisé l’intelligence artificielle pour accélérer les recherches budgétaires et juridiques, comparer des textes, compiler des données et vérifier des calculs. Les choix, arbitrages et la responsabilité du contenu lui appartiennent.</p><p>Le programme publie simultanément ses propositions, son cadre budgétaire, ses simulations d’impact et son calendrier d’exécution afin de rendre la méthode, les hypothèses et l’ordre de mise en œuvre directement consultables.</p></div></div></section>
+  <section class="section light-section" id="documents"><div class="container"><div class="section-heading"><span class="eyebrow">Documents à télécharger</span><h2>Ressources pour préparer un article, un entretien ou un sujet.</h2></div><div class="press-docs">
+    <a href="/downloads/communique-presse-france2035.pdf" download><b>Communiqué de presse</b><span>Présentation journalistique de la démarche.</span></a>
+    <a href="/downloads/kit-presse-france2035.pdf" download><b>Kit presse PDF</b><span>Repères, biographie, ressources et contact.</span></a>
+    <a href="/downloads/programme-complet-france2035.pdf" download><b>Programme complet</b><span>70 pages, 30 chantiers, 436 mesures.</span></a>
+    <a href="/downloads/budget-general-france2035.pdf" download><b>Budget général</b><span>Cadre budgétaire et hypothèses de travail.</span></a>
+    <a href="/downloads/simulations-impact-france2035.pdf" download><b>Simulations d’impact</b><span>20 ménages et 20 entreprises.</span></a>
+    <a href="/downloads/calendrier-execution-france2035.pdf" download><b>Calendrier d’exécution</b><span>100 premiers jours puis trajectoire jusqu’à l’année 15.</span></a>
+    <a href="/downloads/lettre-presentation-demarche-france2035.pdf" download><b>Lettre de présentation</b><span>Origine, méthode et choix de la démarche.</span></a>
+    <a href="/assets/andy-sabria-presse-hd.png" download="andy-sabria-presse-hd.png"><b>Photo presse d’Andy Sabria — HD</b><span>Portrait presse.</span></a>
+    <a href="/assets/andy-sabria-presse.jpg" download="andy-sabria-presse.jpg"><b>Photo presse d’Andy Sabria — Web</b><span>Version optimisée pour le web.</span></a>
+    <a href="/assets/logo-france2035.png" download="logo-demarche-france2035.png"><b>Logo Démarche France 2035</b><span>PNG transparent.</span></a>
+  </div></div></section>
+  <section class="contact-band"><div class="container"><div><span class="eyebrow">Contact presse</span><h2>Andy Sabria — Démarche France 2035</h2><p><a href="mailto:${contact}">${contact}</a><br><a href="${canonicalRoot}/">${canonicalRoot.replace('https://','')}</a></p></div><a class="button button-primary" href="mailto:${contact}?subject=Presse%20-%20D%C3%A9marche%20France%202035">Écrire à Andy Sabria<span>→</span></a></div></section>`
 });
 
 const contactPage = layout({
@@ -643,6 +668,9 @@ const css = `
 @media(max-width:360px){.brand-copy{max-width:175px}.brand-copy strong{font-size:.54rem}.brand-copy strong>span:last-child{font-size:.63rem}}
 @media(max-width:350px){.share-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+
+.press-grid{display:grid;grid-template-columns:minmax(0,1.35fr) minmax(260px,.65fr);gap:64px;align-items:center}.press-portrait{margin:0}.press-portrait img,.press-bio-photo img{display:block;width:100%;border-radius:12px;box-shadow:var(--shadow)}.press-portrait figcaption{margin-top:10px;color:var(--muted);font-size:.8rem}.press-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:34px 0}.press-stats article{padding:20px 16px;border:1px solid var(--line);border-radius:10px;background:#fff}.press-stats b{display:block;color:var(--navy);font-size:1.9rem;line-height:1}.press-stats span{display:block;margin-top:7px;color:var(--muted);font-size:.84rem}.press-bio{display:grid;grid-template-columns:270px minmax(0,1fr);gap:48px;align-items:start}.press-credit{margin-top:22px;padding-top:18px;border-top:1px solid var(--line);color:var(--muted);font-size:.88rem}.press-docs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.press-docs a{display:block;padding:21px;border:1px solid var(--line);border-radius:10px;background:#fff;text-decoration:none;transition:.2s ease}.press-docs a:hover{transform:translateY(-2px);box-shadow:0 10px 25px rgba(7,28,63,.08);border-color:#b8c9df}.press-docs b{display:block;color:var(--navy);font-size:1.04rem}.press-docs span{display:block;margin-top:6px;color:var(--muted);font-size:.88rem}
+@media(max-width:820px){.press-grid,.press-bio{grid-template-columns:1fr}.press-portrait{max-width:320px}.press-bio-photo{max-width:260px}.press-stats{grid-template-columns:repeat(2,1fr)}}@media(max-width:620px){.press-docs{grid-template-columns:1fr}.press-stats{grid-template-columns:1fr}}
 `;
 
 const js = `
@@ -699,7 +727,8 @@ const sitemapEntries = [
   ['/simulations-impact/', '2026-09-12'],
   ['/calendrier-execution/', '2026-09-15'],
   ['/contribuer/', '2026-09-12'],
-  ['/journal/', '2026-09-15'],
+  ['/journal/', '2026-10-02'],
+  ['/kit-presse/', '2026-10-02'],
   ['/contact/', '2026-09-12'],
   ['/mentions-legales/', '2026-09-12'],
 ];
@@ -714,6 +743,7 @@ const files = {
   'calendrier-execution/index.html': calendarPage,
   'contribuer/index.html': contributePage,
   'journal/index.html': journalPage,
+  'kit-presse/index.html': kitPressPage,
   'contact/index.html': contactPage,
   'mentions-legales/index.html': legalPage,
   '404.html': notFound,

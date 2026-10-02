@@ -53,8 +53,8 @@ for (const file of htmlFiles) {
 
 const journal = fs.readFileSync(path.join(root,'journal/index.html'),'utf8');
 const journalDates = [...journal.matchAll(/<time datetime="([^"]+)">/g)].map(match => match[1]);
-if (journalDates.length !== 2 || journalDates[0] !== '2026-09-15' || journalDates[1] !== '2026-08-30') errors.push('journal: expected exactly the launch and programme completion dates');
-for (const heading of ['Lancement du site','Fin de l’élaboration du programme']) {
+if (journalDates.length !== 3 || journalDates[0] !== '2026-10-02' || journalDates[1] !== '2026-09-15' || journalDates[2] !== '2026-08-30') errors.push('journal: expected kit press creation, launch and programme completion dates');
+for (const heading of ['Création d’un onglet « Kit Presse » sur le site','Lancement du site','Fin de l’élaboration du programme']) {
   if (!journal.includes(`<h2>${heading}</h2>`)) errors.push(`journal: missing ${heading}`);
 }
 
@@ -64,7 +64,7 @@ for (const match of sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)) {
 }
 if (sitemap.includes('/404.html')) errors.push('sitemap: 404 must not be indexed');
 
-for (const file of ['assets/site.css','assets/site.js','assets/logo-france2035.png','assets/logo-france2035-256.webp','assets/hero-france2035.webp','assets/og-france2035.png','favicon.svg','site.webmanifest','sitemap.xml','indexnow-key.txt','google26c5ac0079b8b67f.html']) {
+for (const file of ['assets/site.css','assets/site.js','assets/logo-france2035.png','assets/logo-france2035-256.webp','assets/hero-france2035.webp','assets/og-france2035.png','assets/andy-sabria-presse-hd.png','assets/andy-sabria-presse.jpg','downloads/communique-presse-france2035.pdf','downloads/kit-presse-france2035.pdf','downloads/kit-presse-france2035-complet.zip','favicon.svg','site.webmanifest','sitemap.xml','indexnow-key.txt','google26c5ac0079b8b67f.html']) {
   if (!fs.existsSync(path.join(root,file))) errors.push(`missing required asset ${file}`);
 }
 

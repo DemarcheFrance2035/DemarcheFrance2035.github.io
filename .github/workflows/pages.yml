@@ -39,9 +39,22 @@ jobs:
             gzip -dc "$archive" > "$destination"
           done < <(find .packed -type f -name '*.gz' -print0)
 
-      - name: Générer et valider le site
+      - name: Générer le site et préparer le kit presse
         run: |
           node generate.mjs
+          cd dist
+          zip -j -q downloads/kit-presse-france2035-complet.zip \
+            downloads/communique-presse-france2035.pdf \
+            downloads/kit-presse-france2035.pdf \
+            downloads/programme-complet-france2035.pdf \
+            downloads/budget-general-france2035.pdf \
+            downloads/simulations-impact-france2035.pdf \
+            downloads/calendrier-execution-france2035.pdf \
+            downloads/lettre-presentation-demarche-france2035.pdf \
+            assets/andy-sabria-presse-hd.png \
+            assets/andy-sabria-presse.jpg \
+            assets/logo-france2035.png
+          cd ..
           node validate.mjs
 
       - name: Configurer GitHub Pages
