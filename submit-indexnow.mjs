@@ -9,6 +9,15 @@ const urlList = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map((match) => mat
 if (!urlList.length) throw new Error('Le sitemap ne contient aucune URL.');
 
 const site = new URL(urlList[0]);
+// Signaler aussi les portraits retirés et les ressources presse remplacées.
+for (const resource of [
+  '/assets/andy-sabria-presse-hd.png',
+  '/assets/andy-sabria-presse.jpg',
+  '/downloads/kit-presse-france2035.pdf',
+  '/downloads/kit-presse-france2035-complet.zip',
+]) {
+  urlList.push(new URL(resource, site.origin).href);
+}
 const keyLocation = `${site.origin}/indexnow-key.txt`;
 const payload = {
   host: site.host,
